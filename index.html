@@ -309,10 +309,10 @@
                     lastValues.push($(this).data('number'));
                 });
                 
-                if($(this).text().indexOf('[On]')) {
-                    $(this).text('Toggle [On]');
-                } else {
+                if($(this).text().indexOf('[On]') !== -1) {
                     $(this).text('Toggle [Off]');
+                } else {
+                    $(this).text('Toggle [On]');
                 }
             });
             
