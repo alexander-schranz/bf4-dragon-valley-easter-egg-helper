@@ -1,280 +1,402 @@
+
 <!doctype html>
 <html>
 <head>
-    <title>Dragon Valley Easter Egg Helper</title>
+   <title>BF4: Dragon Valley Easter Egg Helper</title>
+   <style>
+        body {
+            margin: 40px 20px;
+            font-family: Times, Arial;
+            background: url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/simple_dashed.png");
+            color: #333;
+        }
+        
+        .wrapper {
+            background: white;
+            max-width: 560px;
+            padding: 10px 20px 40px;
+            margin: 0 auto;
+            box-shadow: 0 0 10px #ccc;
+        }
+        
+        th, td {
+            text-align: left;
+        }
+        
+        .grid td input {
+            display: none;
+        }
+        
+        .grid td label {
+            display: block;
+            text-align: center;
+            line-height: 45px;
+            width: 45px;
+            height: 46px;
+            background-color: grey;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .grid td input:checked+label {
+            background-color: yellow;
+            color: #333;
+        }
+        
+        .grid {
+            background: url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/gridme.png") top center;
+            padding: 20px 10px;
+        }
+        
+        a {
+            color: blue;
+        }
+        
+        h1 {
+            font-size: 1.8em;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            text-align: center;
+        }
+        
+        p {
+            text-align: center;
+        }
+        
+        table {
+            margin: 0 auto;
+        }
+        
+        iframe {
+            border: 0;
+            display: block;
+            margin: 0 auto;
+        }
+   </style>
 </head>
 <body>
-    <h1>Dragon Valley Easter Egg Helper by Lexo91</h1>
-    <p>
-        <a href="http://battlelog.battlefield.com/bf4/forum/threadview/2955065246879560123/1/">Inspired by Appolo_v7 Dragon Valley Easter Egg Tutorial</a>
-        I created a little helper to get all 20 lights burning.
-    </p>
-    <section>
-        <fieldset>
-            <legend>
-                Lights
-            </legend>
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="7">
-                            North
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <input type="checkbox" name="light1" id="light1" data-number="1" />
-                            <label for="light1">1</label>
-                        </td>
-                        <td>
-                            <input type="checkbox" name="light2" id="light2" data-number="2" />
-                            <label for="light2">2</label>
-                        </td>
-                        <td>
-                            <input type="checkbox" name="light3" id="light3" data-number="3" />
-                            <label for="light3">3</label>
-                        </td>
-                        <td>
-                            <input type="checkbox" name="light4" id="light4" data-number="4" />
-                            <label for="light4">4</label>
-                        </td>
-                        <td>
-                            <input type="checkbox" name="light5" id="light5" data-number="5" />
-                            <label for="light5">5</label>
-                        </td>
-                        <td>
-                            <input type="checkbox" name="light6" id="light6" data-number="6" />
-                            <label for="light6">6</label>
-                        </td>
-                        <td>
-                            <input type="checkbox" name="light7" id="light7" data-number="7" />
-                            <label for="light7">7</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" name="light20" id="light20" data-number="20" />
-                            <label for="light20">20</label>
-                        </td>
-                        <td colspan="5">
-                        </td>
-                        <td>
-                            <input type="checkbox" name="light8" id="light8" data-number="8" />
-                            <label for="light8">8</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" name="light19" id="light19" data-number="19" />
-                            <label for="light19">19</label>
-                        </td>
-                        <td colspan="5">
-                        </td>
-                        <td>
-                            <input type="checkbox" name="light9" id="light9" data-number="9" />
-                            <label for="light9">9</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" name="light18" id="light18" data-number="18" />
-                            <label for="light18">18</label>
-                        </td>
-                        <td colspan="5">
-                        </td>
-                        <td>
-                            <input type="checkbox" name="light10" id="light10" data-number="10" />
-                            <label for="light10">10</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" name="light17" id="light17" data-number="17" />
-                            <label for="light17">17</label>
-                        </td>
-                        <td>
-                            <input type="checkbox" name="light16" id="light16" data-number="16" />
-                            <label for="light16">16</label>
-                        </td>
-                        <td>
-                            <input type="checkbox" name="light15" id="light15" data-number="15" />
-                            <label for="light15">15</label>
-                        </td>
-                        <td>
-                            <input type="checkbox" name="light14" id="light14" data-number="14" />
-                            <label for="light14">14</label>
-                        </td>
-                        <td>
-                            <input type="checkbox" name="light13" id="light13" data-number="13" />
-                            <label for="light13">13</label>
-                        </td>
-                        <td>
-                            <input type="checkbox" name="light12" id="light12" data-number="12" />
-                            <label for="light12">12</label>
-                        </td>
-                        <td>
-                            <input type="checkbox" name="light11" id="light11" data-number="11" />
-                            <label for="light11">11</label>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </fieldset>
-    </section>
-    <section>
-        <fieldset>
-            <legend>
-                Triggers
-            </legend>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <label for="values0">Beginning</label>
-                        </td>
-                        <td>
-                            <input type="text" name="values0" id="values0" readonly />
-                        </td>
-                        <td>
-                            <button class="analyse" id="analyse0">
-                                Analyse
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="values1">Temple</label>
-                        </td>
-                        <td>
-                            <input type="text" name="values1" id="values1" readonly />
-                        </td>
-                        <td>
-                            <button class="analyse" id="analyse1">
-                                Analyse
-                            </button>
-                            <button class="toggle" id="toggle1">
+<div class="wrapper">
+        <h1>
+            BF4 Dragon Valley Easter Egg Helper<br/>
+            <small>
+                v1.0<br/>
+                by Lexo91
+            </small>
+        </h1>
+        <p>
+            Inspired by <a href="http://battlelog.battlefield.com/bf4/forum/threadview/2955065246879560123/1/">Appolo_v7 Dragon Valley Easter Egg Tutorial</a><br/>
+            I created a little helper to get all 20 lights burning.
+        </p>
+        <section>
+            <fieldset class="grid">
+                <legend>
+                    Lights
+                </legend>
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="7" class="text-center">
+                                North
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="light1" id="light1" data-number="1" />
+                                <label for="light1">1</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="light2" id="light2" data-number="2" />
+                                <label for="light2">2</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="light3" id="light3" data-number="3" />
+                                <label for="light3">3</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="light4" id="light4" data-number="4" />
+                                <label for="light4">4</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="light5" id="light5" data-number="5" />
+                                <label for="light5">5</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="light6" id="light6" data-number="6" />
+                                <label for="light6">6</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="light7" id="light7" data-number="7" />
+                                <label for="light7">7</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="light20" id="light20" data-number="20" />
+                                <label for="light20">20</label>
+                            </td>
+                            <td colspan="5">
+                            </td>
+                            <td>
+                                <input type="checkbox" name="light8" id="light8" data-number="8" />
+                                <label for="light8">8</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="light19" id="light19" data-number="19" />
+                                <label for="light19">19</label>
+                            </td>
+                            <td colspan="5">
+                            </td>
+                            <td>
+                                <input type="checkbox" name="light9" id="light9" data-number="9" />
+                                <label for="light9">9</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="light18" id="light18" data-number="18" />
+                                <label for="light18">18</label>
+                            </td>
+                            <td colspan="5">
+                            </td>
+                            <td>
+                                <input type="checkbox" name="light10" id="light10" data-number="10" />
+                                <label for="light10">10</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="light17" id="light17" data-number="17" />
+                                <label for="light17">17</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="light16" id="light16" data-number="16" />
+                                <label for="light16">16</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="light15" id="light15" data-number="15" />
+                                <label for="light15">15</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="light14" id="light14" data-number="14" />
+                                <label for="light14">14</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="light13" id="light13" data-number="13" />
+                                <label for="light13">13</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="light12" id="light12" data-number="12" />
+                                <label for="light12">12</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="light11" id="light11" data-number="11" />
+                                <label for="light11">11</label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </section>
+        <section>
+            <fieldset>
+                <legend>
+                    Triggers
+                </legend>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Location
+                            </th>
+                            <th>
+                                Lights
+                            </th>
+                            <th>
+                                Set Lights
+                            </th>
+                            <th>
                                 Toggle
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="values2">Furnace</label>
-                        </td>
-                        <td>
-                            <input type="text" name="values2" id="values2" readonly />
-                        </td>
-                        <td>
-                            <button class="analyse" id="analyse2">
-                                Analyse
-                            </button>
-                            <button class="toggle" id="toggle2">
-                                Toggle
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="values3">Tree</label>
-                        </td>
-                        <td>
-                            <input type="text" name="values3" id="trigger3" readonly />
-                        </td>
-                        <td>
-                            <button class="analyse" id="analyse3">
-                                Analyse
-                            </button>
-                            <button class="toggle" id="toggle3">
-                                Toggle
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="trigger4">Waterfall</label>
-                        </td>
-                        <td>
-                            <input type="text" name="trigger4" id="trigger4" readonly />
-                        </td>
-                        <td>
-                            <button class="analyse" id="analyse4">
-                                Analyse
-                            </button>
-                            <button class="toggle" id="toggle4">
-                                Toggle
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="trigger5">Pier</label>
-                        </td>
-                        <td>
-                            <input type="text" name="values5" id="values5" readonly />
-                        </td>
-                        <td>
-                            <button class="analyse" id="analyse5">
-                                Analyse
-                            </button>
-                            <button class="toggle" id="toggle5">
-                                Toggle
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="values6">Rock</label>
-                        </td>
-                        <td>
-                            <input type="text" name="values6" id="values6" readonly />
-                        </td>
-                        <td>
-                            <button class="analyse" id="analyse6">
-                                Analyse
-                            </button>
-                            <button class="toggle" id="toggle6">
-                                Toggle
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="values7">Pagoda</label>
-                        </td>
-                        <td>
-                            <input type="text" name="values7" id="values7" readonly />
-                        </td>
-                        <td>
-                            <button class="analyse" id="analyse7">
-                                Analyse
-                            </button>
-                            <button class="toggle" id="toggle7">
-                                Toggle
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <button id="reset-toggle">
-                Reset Toggle Status
-            </button>
-        </fieldset>
-    </section>
-    <section>
-        <h2>How to use this helper</h2>
-        <ol>
-            <li>Check all currently burning lights and click "Analyse" for "Beginning"</li>
-            <li>Go the a button trigger it check all currently burning lights and click "Analyse"</li>
-            <li>Continue doing this for the other buttons</li>
-            <li>After that you can test which button you need to turn on off to get the end result</li>
-        </ol>
-    </section>
-    <section>
-        <h2>Locations</h2>
-        <iframe src="https://www.youtube.com/embed/e6PcPuJOZ18" width="480" height="260"></iframe>
-    </section>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="values0">Beginning</label>
+                            </td>
+                            <td>
+                                <input type="text" name="values0" id="values0" readonly />
+                            </td>
+                            <td>
+                                <button class="analyse" id="analyse0">
+                                    Analyse
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="values1">Temple</label>
+                            </td>
+                            <td>
+                                <input type="text" name="values1" id="values1" readonly />
+                            </td>
+                            <td>
+                                <button class="analyse" id="analyse1" disabled>
+                                    Analyse
+                                </button>
+                            </td>
+                            <td>
+                                <button class="toggle" id="toggle1" disabled>
+                                    Toggle [Off]
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="values2">Furnace</label>
+                            </td>
+                            <td>
+                                <input type="text" name="values2" id="values2" readonly />
+                            </td>
+                            <td>
+                                <button class="analyse" id="analyse2" disabled>
+                                    Analyse
+                                </button>
+                            </td>
+                            <td>
+                                <button class="toggle" id="toggle2" disabled>
+                                    Toggle [Off]
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="values3">Tree</label>
+                            </td>
+                            <td>
+                                <input type="text" name="values3" id="trigger3" readonly />
+                            </td>
+                            <td>
+                                <button class="analyse" id="analyse3" disabled>
+                                    Analyse
+                                </button>
+                            </td>
+                            <td>
+                                <button class="toggle" id="toggle3" disabled>
+                                    Toggle [Off]
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="trigger4">Waterfall</label>
+                            </td>
+                            <td>
+                                <input type="text" name="trigger4" id="trigger4" readonly />
+                            </td>
+                            <td>
+                                <button class="analyse" id="analyse4" disabled>
+                                    Analyse
+                                </button>
+                            </td>
+                            <td>
+                                <button class="toggle" id="toggle4" disabled>
+                                    Toggle [Off]
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="trigger5">Pier</label>
+                            </td>
+                            <td>
+                                <input type="text" name="values5" id="values5" readonly />
+                            </td>
+                            <td>
+                                <button class="analyse" id="analyse5" disabled>
+                                    Analyse
+                                </button>
+                            </td>
+                            <td>
+                                <button class="toggle" id="toggle5" disabled>
+                                    Toggle [Off]
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="values6">Rock</label>
+                            </td>
+                            <td>
+                                <input type="text" name="values6" id="values6" readonly />
+                            </td>
+                            <td>
+                                <button class="analyse" id="analyse6" disabled>
+                                    Analyse
+                                </button>
+                            </td>
+                            <td>
+                                <button class="toggle" id="toggle6" disabled>
+                                    Toggle [Off]
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="values7">Pagoda</label>
+                            </td>
+                            <td>
+                                <input type="text" name="values7" id="values7" readonly />
+                            </td>
+                            <td>
+                                <button class="analyse" id="analyse7" disabled>
+                                    Analyse
+                                </button>
+                            </td>
+                            <td>
+                                <button class="toggle" id="toggle7" disabled>
+                                    Toggle [Off]
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">
+                                <button id="reset-toggle">
+                                    Reset Toggle Status
+                                </button>    
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </fieldset>
+        </section>
+        <section>
+            <h2>How to use this helper</h2>
+            <ol>
+                <li>Check all currently burning lights and click "Analyse" for "Beginning"</li>
+                <li>Go the a button trigger it check all currently burning lights and click "Analyse"</li>
+                <li>Continue doing this for the other buttons</li>
+                <li>After that you can test which button you need to turn on off to get the end result</li>
+            </ol>
+        </section>
+        <section>
+            <h2>Locations</h2>
+            <iframe src="https://www.youtube.com/embed/e6PcPuJOZ18" width="480" height="260"></iframe>
+        </section>
+    </div>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script>        
         $(document).ready(function() {
@@ -301,7 +423,12 @@
                     lastValues.push($(this).data('number'));
                 });
                 
+                if ($(this).attr('id') === 'analyse0') {
+                    $('.analyse').prop('disabled', false);
+                }
+                
                 $(this).prop('disabled', true);
+                $('#' + $(this).attr('id').replace('analyse', 'toggle')).prop('disabled', false);
             });
             
             $('.toggle').click(function() {
@@ -324,7 +451,7 @@
             });
             
             $('#reset-toggle').click(function() {
-                $('.toggle').text('Toggle');
+                $('.toggle').text('Toggle [Off]');
             });
             
             $('input[type=text]').dblclick(function() {
