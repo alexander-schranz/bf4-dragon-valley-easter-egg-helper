@@ -26,6 +26,12 @@
             display: none;
         }
         
+        #error {
+            display: none;
+            color: red;
+            text-align: right;
+        }
+        
         .grid td label {
             display: block;
             text-align: center;
@@ -86,7 +92,7 @@
         <h1>
             BF4 Dragon Valley Easter Egg Helper<br/>
             <small>
-                v2.1<br/>
+                v2.2<br/>
                 by Lexo91
             </small>
         </h1>
@@ -250,7 +256,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="values1">Temple</label>
+                                <label for="values1">Temple (H)</label>
                             </td>
                             <td>
                                 <input type="text" name="values1" id="values1" readonly />
@@ -267,7 +273,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="values2">Furnace</label>
+                                <label for="values2">Furnace (C)</label>
                             </td>
                             <td>
                                 <input type="text" name="values2" id="values2" readonly />
@@ -284,10 +290,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="values3">Tree</label>
+                                <label for="values3">Tree (A)</label>
                             </td>
                             <td>
-                                <input type="text" name="values3" id="trigger3" readonly />
+                                <input type="text" name="values3" id="values3" readonly />
                             </td>
                             <td>
                                 <button class="analyse" id="analyse3" disabled>
@@ -301,10 +307,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="trigger4">Waterfall</label>
+                                <label for="values4">Waterfall (D)</label>
                             </td>
                             <td>
-                                <input type="text" name="trigger4" id="trigger4" readonly />
+                                <input type="text" name="values4" id="values4" readonly />
                             </td>
                             <td>
                                 <button class="analyse" id="analyse4" disabled>
@@ -318,7 +324,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="trigger5">Pier</label>
+                                <label for="values5">Pier (G)</label>
                             </td>
                             <td>
                                 <input type="text" name="values5" id="values5" readonly />
@@ -335,7 +341,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="values6">Rock</label>
+                                <label for="values6">Rock (E)</label>
                             </td>
                             <td>
                                 <input type="text" name="values6" id="values6" readonly />
@@ -352,7 +358,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="values7">Pagoda</label>
+                                <label for="values7">Pagoda (B)</label>
                             </td>
                             <td>
                                 <input type="text" name="values7" id="values7" readonly />
@@ -381,6 +387,11 @@
                                 </button>    
                             </td>
                         </tr>
+                        <tr>
+                            <td colspan="4">
+                                <div id="error">No solution found</div>
+                            </td>
+                        </tr>
                     </tfoot>
                 </table>
             </fieldset>
@@ -392,7 +403,8 @@
                 <li>Go the a button trigger it check all currently burning lights and click "Analyse"</li>
                 <li>Continue doing this for the other buttons</li>
                 <li>Click Reset Toggle Status if a Toggle is on and check the correctness of all burning lights</li>
-                <li>Click on the Magic Button this will tell you which buttons you need to click again</li>
+                <li>Click on the 
+                Button this will tell you which buttons you need to click again</li>
                 <li><a href="http://battlelog.battlefield.com/bf4/forum/threadview/2955065246879560123/1/" target="_blank">Continue the Guide</a></li>
             </ol>
         </section>
@@ -407,7 +419,7 @@
             var lastValues = [];
             $('.analyse').click(function() {
                 var values = [];
-                $('input[type=checkbox]:checked').each(function() {
+                $('.light:checked').each(function() {
                     values.push($(this).data('number'));
                 });
                 
@@ -423,7 +435,7 @@
                 $(this).closest('tr').find('input[type=text]').val(values.join(','));
                 
                 lastValues = [];
-                $('input[type=checkbox]:checked').each(function() {
+                $('.light:checked').each(function() {
                     lastValues.push($(this).data('number'));
                 });
                 
@@ -443,7 +455,7 @@
                 });
                 
                 lastValues = [];
-                $('input[type=checkbox]:checked').each(function() {
+                $('.light:checked').each(function() {
                     lastValues.push($(this).data('number'));
                 });
                 
@@ -455,6 +467,11 @@
             });
             
             $('#magic-toggle').click(function() {
+                $('#error').hide();
+                
+                var $currentChecked = $('.light:checked');
+                
+                var solution = false;
                 for (var i = 0; i<128; i++) {
                     $.each([1,2,4,8,16,32,64], function(index, x) {
                         index = index + 1;
@@ -479,6 +496,13 @@
                         break;
                     }
                 }
+                
+                if ($('.light:checked').length !== 20) {
+                    $('#error').show();
+                    $('.light').prop('checked', false);
+                    $('.toggle').prop('checked', false);
+                    $currentChecked.prop('checked', true);
+                }
             });
             
             $('#reset-toggle').click(function() {
@@ -486,11 +510,26 @@
             });
             
             $('input[type=text]').dblclick(function() {
-                $(this).prop('readonly', false);
+                if ($(this).attr('id') === 'values0' || $('#analyse0').prop('disabled')) {
+                    $(this).prop('readonly', false);
+                }
             });
             
             $('input[type=text]').blur(function() {
-                $(this).prop('readonly', true);
+                if (!$(this).prop('readonly')) {
+                    $(this).prop('readonly', true);
+                    if ($(this).attr('id') === 'values0' && !$('#analyse0').prop('disabled')) {
+                        $('.analyse').prop('disabled', false);
+                    }
+                    
+                    console.log('============');
+                    console.log($(this).attr('id'));
+                    console.log('#' + $(this).attr('id').replace('values', 'toggle'));
+                    console.log('#' + $(this).attr('id').replace('values', 'analyse'));
+                    
+                    $('#' + $(this).attr('id').replace('values', 'toggle')).prop('disabled', false);
+                    $('#' + $(this).attr('id').replace('values', 'analyse')).prop('disabled', true);
+                }
             });
         });
     </script>
