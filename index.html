@@ -22,17 +22,16 @@
             text-align: left;
         }
         
-        .grid td input {
+        .light {
             display: none;
         }
         
-        #error {
-            display: none;
-            color: red;
-            text-align: right;
+        .light:checked+label {
+            color: #333;
+            background-color: yellow;
         }
         
-        .grid td label {
+        .light+label {
             display: block;
             text-align: center;
             line-height: 46px;
@@ -44,13 +43,18 @@
             font-family: Sans-serif;
         }
         
+        #error {
+            display: none;
+            color: red;
+            text-align: right;
+        }
+        
         .text-center {
             text-align: center;
         }
         
-        .grid td input:checked+label {
-            color: #333;
-            background-color: yellow;
+        .box-center {
+            display: inline-block;
         }
         
         .grid {
@@ -92,7 +96,7 @@
         <h1>
             BF4 Dragon Valley Easter Egg Helper<br/>
             <small>
-                v2.2.2<br/>
+                v3.0<br/>
                 by Lexo91
             </small>
         </h1>
@@ -103,6 +107,9 @@
             <a href="https://www.youtube.com/watch?v=e6PcPuJOZ18" target="_blank"><strong>Apollo_v7</strong></a>
             <br/>
             I created a little helper to get all <strong>20 lamps</strong> burning.
+        </p>
+        <p>
+            <a href="http://battlelog.battlefield.com/bf4/forum/threadview/2979150494244429566/">Any Questions or Feedback?</a>
         </p>
         <section>
             <fieldset class="grid">
@@ -215,6 +222,20 @@
                             </td>
                         </tr>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="7" class="text-center">
+                                <br/>
+                                <label for="last-input" class="box-center">Last active Lights:</label>
+                                <div>
+                                    <button id="history-back" disabled>&#x2190;</button>
+                                    <input type="text" name="last-input" id="last-input" class="box-center" readonly />
+                                    <button id="history-forward" disabled>&#x2192;</button>
+                                </div>
+                                <button id="reset-lights" class="box-center" disabled>Reset lights</button>
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
             </fieldset>
         </section>
@@ -233,7 +254,7 @@
                                 Lights
                             </th>
                             <th>
-                                Set Lights
+                                Set
                             </th>
                             <th>
                                 Toggle
@@ -246,11 +267,11 @@
                                 <label for="values0">Beginning</label>
                             </td>
                             <td>
-                                <input type="text" name="values0" id="values0" readonly />
+                                <input type="text" name="values0" id="values0" class="values" readonly />
                             </td>
-                            <td>
+                            <td colspan="2">
                                 <button class="analyse" id="analyse0">
-                                    Analyse
+                                    Set Lights
                                 </button>
                             </td>
                         </tr>
@@ -259,11 +280,11 @@
                                 <label for="values1">Temple (H)</label>
                             </td>
                             <td>
-                                <input type="text" name="values1" id="values1" readonly />
+                                <input type="text" name="values1" id="values1" class="values" readonly />
                             </td>
                             <td>
                                 <button class="analyse" id="analyse1" disabled>
-                                    Analyse
+                                    Trigger
                                 </button>
                             </td>
                             <td>
@@ -276,11 +297,11 @@
                                 <label for="values2">Furnace (C)</label>
                             </td>
                             <td>
-                                <input type="text" name="values2" id="values2" readonly />
+                                <input type="text" name="values2" id="values2" class="values" readonly />
                             </td>
                             <td>
                                 <button class="analyse" id="analyse2" disabled>
-                                    Analyse
+                                    Trigger
                                 </button>
                             </td>
                             <td>
@@ -293,11 +314,11 @@
                                 <label for="values3">Tree (A)</label>
                             </td>
                             <td>
-                                <input type="text" name="values3" id="values3" readonly />
+                                <input type="text" name="values3" id="values3" class="values" readonly />
                             </td>
                             <td>
                                 <button class="analyse" id="analyse3" disabled>
-                                    Analyse
+                                    Trigger
                                 </button>
                             </td>
                             <td>
@@ -310,11 +331,11 @@
                                 <label for="values4">Waterfall (D)</label>
                             </td>
                             <td>
-                                <input type="text" name="values4" id="values4" readonly />
+                                <input type="text" name="values4" id="values4" class="values" readonly />
                             </td>
                             <td>
                                 <button class="analyse" id="analyse4" disabled>
-                                    Analyse
+                                    Trigger
                                 </button>
                             </td>
                             <td>
@@ -327,11 +348,11 @@
                                 <label for="values5">Pier (G)</label>
                             </td>
                             <td>
-                                <input type="text" name="values5" id="values5" readonly />
+                                <input type="text" name="values5" id="values5" class="values" readonly />
                             </td>
                             <td>
                                 <button class="analyse" id="analyse5" disabled>
-                                    Analyse
+                                    Trigger
                                 </button>
                             </td>
                             <td>
@@ -344,11 +365,11 @@
                                 <label for="values6">Rock (E)</label>
                             </td>
                             <td>
-                                <input type="text" name="values6" id="values6" readonly />
+                                <input type="text" name="values6" id="values6" class="values" readonly />
                             </td>
                             <td>
                                 <button class="analyse" id="analyse6" disabled>
-                                    Analyse
+                                    Trigger
                                 </button>
                             </td>
                             <td>
@@ -361,11 +382,11 @@
                                 <label for="values7">Pagoda (B)</label>
                             </td>
                             <td>
-                                <input type="text" name="values7" id="values7" readonly />
+                                <input type="text" name="values7" id="values7" class="values" readonly />
                             </td>
                             <td>
                                 <button class="analyse" id="analyse7" disabled>
-                                    Analyse
+                                    Trigger
                                 </button>
                             </td>
                             <td>
@@ -377,19 +398,24 @@
                     <tfoot>
                         <tr>
                             <td colspan="2">
-                                <button id="reset-toggle">
+                                <button id="reset-toggle" disabled>
                                     Reset Toggle Status
                                 </button>    
                             </td>
                             <td colspan="2">
-                                <button id="magic-toggle">
-                                    Magic Button
+                                <button id="magic-toggle" disabled>
+                                    Calculate
                                 </button>    
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="4">
-                                <div id="error">No solution found</div>
+                            <td colspan="2">
+                                <button id="reset-trigger" disabled>
+                                    Reset Triggers
+                                </button>    
+                            </td>
+                            <td colspan="2">
+                                <div id="error">Error</div>
                             </td>
                         </tr>
                     </tfoot>
@@ -399,12 +425,11 @@
         <section>
             <h2>How to use this helper</h2>
             <ol>
-                <li>Check all currently burning lights and click "Analyse" for "Beginning"</li>
-                <li>Go the a button trigger it check all currently burning lights and click "Analyse"</li>
+                <li>Check all currently burning lights and click <b>"Set Lights"</b> for <b>"Beginning"</b></li>
+                <li>Go the a <b>button</b> trigger it <b>check all currently burning lights</b> and click <b>"Trigger"</b></li>
                 <li>Continue doing this for the other buttons</li>
-                <li>Click Reset Toggle Status if a Toggle is on and check the correctness of all burning lights</li>
-                <li>Click on the 
-                Button this will tell you which buttons you need to click again</li>
+                <li>Check the <b>correctness</b> of all <b>currently burning lights</b></li>
+                <li>Click on the <b>"Calculate"</b> button this will tell you which buttons you need to click again</li>
                 <li><a href="http://battlelog.battlefield.com/bf4/forum/threadview/2955065246879560123/1/" target="_blank">Continue the Guide</a></li>
             </ol>
         </section>
@@ -416,106 +441,235 @@
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script>        
         $(document).ready(function() {
-            var lastValues = [];
+            // convert string to numeric
+            var toNumeric = function(n,i) {
+                return isNaN(parseInt(n)) ? n : parseInt(n);
+            };
+            
+            var lightHistory = [[]];
+            var lightHistoryIndex = 0;
+            
+            // get last active lights
+            var getLastActiveLights = function() {
+                return $.map($('#last-input').val().split(','), toNumeric);
+            };
+            
+            // set current as last
+            var setCurrentAsLast = function() {
+                var lastValues = [];
+                $('.light:checked').each(function() {
+                    lastValues.push($(this).data('number'));
+                });
+                
+                setLastActiveLights(lastValues, false);
+            };
+            
+            // last active history navigation
+            var lastActiveHistory = function() {
+                if (lightHistoryIndex >= 0 && lightHistoryIndex < lightHistory.length) {
+                    setLastActiveLights(lightHistory[lightHistoryIndex], true)
+                } else {
+                    if (lightHistoryIndex < 0) {
+                        lightHistoryIndex = 0;
+                    }
+                    
+                    if (lightHistoryIndex >= lightHistory.length) {
+                        lightHistoryIndex = lightHistory.length - 1;
+                    }
+                }
+            };
+            
+            // set last acitve lights
+            var setLastActiveLights = function(lastValues, ignoreHistory) {
+                $('#last-input').val(lastValues.join(','));
+                
+                if (!ignoreHistory) {
+                    lightHistory.push(lastValues);
+                    lightHistoryIndex = lightHistory.length - 1;
+                }
+                
+                if (lightHistoryIndex === 0) {
+                    $('#history-back').prop('disabled', true);
+                } else {
+                    $('#history-back').prop('disabled', false);
+                }
+                
+                if (lightHistoryIndex < lightHistory.length-1) {
+                    $('#history-forward').prop('disabled', false);
+                } else {
+                    $('#history-forward').prop('disabled', true);
+                }
+            };
+            
+            // reset toggle to uncheck
+            var resetToggle = function() {
+                $('.toggle').prop('checked', false);
+            };
+            
+            // light clicked
+            $('.light').click(function() {
+                // activate reset light button
+                $('#reset-lights').prop('disabled', false);
+            });
+            
+            
+            // reset lights button
+            $('#reset-lights').click(function() {
+                $('.light').prop('checked', false);
+                getLastActiveLights();
+                
+                // get last checked values
+                var lastValues = getLastActiveLights();
+                
+                // check last values
+                for (var i in lastValues) {
+                    if (lastValues[i]) {
+                        $('#light'+lastValues[i]).prop('checked', true);
+                    }
+                }
+            });
+        
+            // analyse
             $('.analyse').click(function() {
+                // get current checked values
                 var values = [];
                 $('.light:checked').each(function() {
                     values.push($(this).data('number'));
                 });
                 
+                // get last checked values
+                var lastValues = getLastActiveLights();
+                
+                // remove unchanged and add removed
                 for (var i in lastValues) {
-                    var lastIndex = $.inArray(lastValues[i], values);
-                    if (lastIndex !== -1) {
-                        values.splice(lastIndex, 1);
-                    } else {
-                        values.push(lastValues[i]);
+                    if (lastValues[i]) {
+                        var lastIndex = $.inArray(lastValues[i], values);
+                        if (lastIndex !== -1) {
+                            values.splice(lastIndex, 1);
+                        } else {
+                            values.push(lastValues[i]);
+                        }
                     }
                 }
                 
-                $(this).closest('tr').find('input[type=text]').val(values.join(','));
+                // set values for this analyse
+                $(this).closest('tr').find('.values').val(values.join(','));
                 
-                lastValues = [];
-                $('.light:checked').each(function() {
-                    lastValues.push($(this).data('number'));
-                });
+                // set this as last
+                setCurrentAsLast();
                 
+                // enabled other analyse
                 if ($(this).attr('id') === 'analyse0') {
                     $('.analyse').prop('disabled', false);
+                } else {
+                    $('#reset-trigger').prop('disabled', false);
                 }
                 
+                // disabled reanalyse
                 $(this).prop('disabled', true);
+                // enable toggle button
                 $('#' + $(this).attr('id').replace('analyse', 'toggle')).prop('disabled', false);
+                
+                // enabled calculate
+                if ($('.analyse:disabled').length === 8) {
+                    $('#magic-toggle').prop('disabled', false);
+                }
             });
             
             $('.toggle').click(function() {
-                var toggleValues = $(this).closest('tr').find('input[type=text]').val().split(',');
+                // get currently toggle values
+                var toggleValues = $.map($(this).closest('tr').find('.values').val().split(','), toNumeric);
+                // toggle checkbox
                 $.each(toggleValues, function(index, item) {
                     var $checkbox = $('[data-number='+item+']');
                     $checkbox.prop('checked', !$checkbox.prop('checked'));
                 });
                 
-                lastValues = [];
-                $('.light:checked').each(function() {
-                    lastValues.push($(this).data('number'));
-                });
+                // set as current
+                setCurrentAsLast();
                 
-                if($(this).text().indexOf('[On]') !== -1) {
-                    $(this).text('Toggle [Off]');
+                // enable reset toggle button
+                if ($('.toggle:checked').length) {
+                    $('#reset-toggle').prop('disabled', false);
                 } else {
-                    $(this).text('Toggle [On]');
+                   $('#reset-toggle').prop('disabled', true);
                 }
             });
             
+            // calculate button click
             $('#magic-toggle').click(function() {
+                // hide error message
                 $('#error').hide();
+                // reset toggles
+                resetToggle();
                 
+                // get currently checked
                 var $currentChecked = $('.light:checked');
                 
                 var solution = false;
+                // try all 128 combinations
                 for (var i = 0; i<128; i++) {
                     $.each([1,2,4,8,16,32,64], function(index, x) {
                         index = index + 1;
                         var $toggleBox = $('#toggle' + index);
                         var doToggle = false;
+                        // is active
                         if (x & i) {
+                            // toggle when not active
                             if (!$toggleBox.prop('checked')) {
                                 doToggle = true;
                             }
                         } else {
+                            // toggle when active
                             if ($toggleBox.prop('checked')) {
                                 doToggle = true;
                             }
                         }
+                        
+                        // do the toggle when needed
                         if (doToggle) {
                             $toggleBox.click();
                         }
                     });
                     
-                    // if correct
+                    // if all lamps correct
                     if ($('.light:checked').length === 20) {
                         break;
                     }
                 }
                 
+                // show error message  when not correct and reset toggles
                 if ($('.light:checked').length !== 20) {
                     $('#error').show();
-                    $('.light').prop('checked', false);
-                    $('.toggle').prop('checked', false);
-                    $currentChecked.prop('checked', true);
+                    resetToggle();
                 }
+                
+                // uncheck all lights
+                $('.light').prop('checked', false);
+                // check old lights
+                $currentChecked.prop('checked', true);
+                // set old as current
+                setCurrentAsLast();
             });
             
+            // reset toggle click
             $('#reset-toggle').click(function() {
-                $('.toggle').prop('checked', false);
+                // reset checkboxes
+                resetToggle();
+                $('#reset-toggle').prop('disabled', true);
             });
             
-            $('input[type=text]').dblclick(function() {
+            // values double click
+            $('.values').dblclick(function() {
+                // allow edit on double click
                 if ($(this).attr('id') === 'values0' || $('#analyse0').prop('disabled')) {
                     $(this).prop('readonly', false);
                 }
             });
             
-            $('input[type=text]').blur(function() {
+            // values exit
+            $('.values').blur(function() {
+                // set readonly on blur
                 if (!$(this).prop('readonly')) {
                     $(this).prop('readonly', true);
                     if ($(this).attr('id') === 'values0' && !$('#analyse0').prop('disabled')) {
@@ -525,6 +679,24 @@
                     $('#' + $(this).attr('id').replace('values', 'toggle')).prop('disabled', false);
                     $('#' + $(this).attr('id').replace('values', 'analyse')).prop('disabled', true);
                 }
+            });
+            
+            // reset triggers
+            $('#reset-trigger').click(function() {
+                $('.analyse').prop('disabled', false);
+                $('#analyse0').prop('disabled', true);
+            });
+            
+            // last active history back
+            $('#history-back').click(function() {
+                lightHistoryIndex = lightHistoryIndex - 1;
+                lastActiveHistory();
+            });
+            
+            // last active history forward
+            $('#history-forward').click(function() {
+                lightHistoryIndex = lightHistoryIndex + 1;
+                lastActiveHistory();
             });
         });
     </script>
