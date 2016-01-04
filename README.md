@@ -1,7 +1,7 @@
 # BF4 Dragon Valley Easter Egg Helper
 
-1. Check all lamps on which are currently on in the map and click "Analyse" button at "Beginning".
-2. Click on each button once change the status of the lamps to the current and click "Analyse" for the specific button.
-3. After you have done this for all 7 Buttons click "Reset Toggle Status" and then "Magic Button".
-4. All checked "Toggle" boxes show each button you need to trigger again once.
-5. All lamps should burn now and you could enter the code at the temple.
+1. Check all currently burning lights and click "Set Lights" for "Beginning"
+2. Go to a button trigger it check all currently burning lights and click "Trigger"
+3. Continue doing this for the other buttons
+4. Check the correctness of all currently burning lights
+5. Click on the "Calculate" button this will tell you which buttons you need to click again
