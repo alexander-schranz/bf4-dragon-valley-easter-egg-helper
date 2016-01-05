@@ -2,12 +2,14 @@
 <html>
 <head>
    <title>BF4: Dragon Valley Easter Egg Helper</title>
+   <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
    <style>
         body {
             margin: 40px 20px;
-            font-family: Times, Arial;
+            font-family: 'Droid Sans', sans-serif;
             background: url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/simple_dashed.png");
             color: #333;
+            font-size: 13px;
         }
         
         .wrapper {
@@ -49,6 +51,17 @@
             text-align: right;
         }
         
+        .value-label {
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        
+        .value-label-icon {
+            display: inline-block;
+            width: 15px;
+            text-align: center;
+        }
+        
         .text-center {
             text-align: center;
         }
@@ -66,6 +79,10 @@
             color: blue;
         }
         
+        ul, ol {
+            padding-left: 1.25em;
+        }
+        
         h1 {
             font-size: 1.8em;
             text-align: center;
@@ -73,10 +90,6 @@
         
         h2 {
             font-size: 1.5em;
-            text-align: center;
-        }
-        
-        p {
             text-align: center;
         }
         
@@ -96,19 +109,19 @@
         <h1>
             BF4 Dragon Valley Easter Egg Helper<br/>
             <small>
-                v3.0<br/>
+                v3.1<br/>
                 by Lexo91
             </small>
         </h1>
-        <p>
+        <p class="text-center">
             Inspired by
             <a href="https://www.youtube.com/watch?v=JuuzmOXL1bc" target="_blank"><strong>JackFraq</strong></a>
             and 
             <a href="https://www.youtube.com/watch?v=e6PcPuJOZ18" target="_blank"><strong>Apollo_v7</strong></a>
             <br/>
             I created a little helper to get all <strong>20 lamps</strong> burning.
-        </p>
-        <p>
+            <br/>
+            <br/>
             <a href="http://battlelog.battlefield.com/bf4/forum/threadview/2979150494244429566/">Any Questions or Feedback?</a>
         </p>
         <section>
@@ -232,7 +245,7 @@
                                     <input type="text" name="last-input" id="last-input" class="box-center" readonly />
                                     <button id="history-forward" disabled>&#x2192;</button>
                                 </div>
-                                <button id="reset-lights" class="box-center" disabled>Reset lights</button>
+                                <button id="reset-lights" class="box-center" disabled>&#x21ba; Reset lights</button>
                             </td>
                         </tr>
                     </tfoot>
@@ -264,7 +277,10 @@
                     <tbody>
                         <tr>
                             <td>
-                                <label for="values0">Beginning</label>
+                                <label class="value-label" for="values0">
+                                    <span class="value-label-icon">&#x2605;</span>
+                                    Beginning
+                                </label>
                             </td>
                             <td>
                                 <input type="text" name="values0" id="values0" class="values" readonly />
@@ -277,7 +293,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="values1">Temple (H)</label>
+                                <label class="value-label" for="values1">
+                                    <span class="value-label-icon">&#x1f384;</span>
+                                    Tree (A)
+                                </label>
                             </td>
                             <td>
                                 <input type="text" name="values1" id="values1" class="values" readonly />
@@ -294,7 +313,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="values2">Furnace (C)</label>
+                                <label class="value-label" for="values2">
+                                    <span class="value-label-icon">&#x25B2;</span>
+                                    Pagoda (B)
+                                </label>
                             </td>
                             <td>
                                 <input type="text" name="values2" id="values2" class="values" readonly />
@@ -311,7 +333,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="values3">Tree (A)</label>
+                                <label class="value-label" for="values3">
+                                    <span class="value-label-icon">&#9632;</span>
+                                    Furnace (C)
+                                </label>
                             </td>
                             <td>
                                 <input type="text" name="values3" id="values3" class="values" readonly />
@@ -328,7 +353,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="values4">Waterfall (D)</label>
+                                <label class="value-label" for="values4">
+                                    <span class="value-label-icon">&#x1f4a7;</span>
+                                    Waterfall (D)
+                                </label>
                             </td>
                             <td>
                                 <input type="text" name="values4" id="values4" class="values" readonly />
@@ -345,7 +373,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="values5">Pier (G)</label>
+                                <label class="value-label" for="values5">
+                                    <span class="value-label-icon">&#x1f48e;</span>
+                                    Rock (E)
+                                </label>
                             </td>
                             <td>
                                 <input type="text" name="values5" id="values5" class="values" readonly />
@@ -362,7 +393,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="values6">Rock (E)</label>
+                                <label class="value-label" for="values6">
+                                    <span class="value-label-icon">&#x2630;</span>
+                                    Pier (G)
+                                </label>
                             </td>
                             <td>
                                 <input type="text" name="values6" id="values6" class="values" readonly />
@@ -379,7 +413,10 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="values7">Pagoda (B)</label>
+                                <label class="value-label" for="values7">
+                                    <span class="value-label-icon">&#x262f;</span>
+                                    Temple (H)
+                                </label>
                             </td>
                             <td>
                                 <input type="text" name="values7" id="values7" class="values" readonly />
@@ -399,19 +436,19 @@
                         <tr>
                             <td colspan="2">
                                 <button id="reset-toggle" disabled>
-                                    Reset Toggle Status
+                                    &#x21b6; Reset Toggle Status
                                 </button>    
                             </td>
                             <td colspan="2">
                                 <button id="magic-toggle" disabled>
-                                    Calculate
+                                    &#x261e; Calculate
                                 </button>    
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
                                 <button id="reset-trigger" disabled>
-                                    Reset Triggers
+                                    &#x21b6; Reset Triggers
                                 </button>    
                             </td>
                             <td colspan="2">
@@ -425,13 +462,19 @@
         <section>
             <h2>How to use this helper</h2>
             <ol>
-                <li>Check all currently burning lights and click <b>"Set Lights"</b> for <b>"Beginning"</b></li>
-                <li>Go to a <b>button</b> trigger it <b>check all currently burning lights</b> and click <b>"Trigger"</b></li>
-                <li>Continue doing this for the other buttons</li>
-                <li>Check the <b>correctness</b> of all <b>currently burning lights</b></li>
-                <li>Click on the <b>"Calculate"</b> button this will tell you which buttons you need to click again</li>
+                <li>Check all currently burning lights and click <b>"Set Lights"</b> for <b>"Beginning"</b>.</li>
+                <li>Go to a <b>button</b> trigger it <b>check all currently burning lights</b> and click <b>"Trigger" (<b>ATTENTION</b>: don't switch the button back!)</b>.*</li>
+                <li>Continue doing this for the other buttons.</li>
+                <li>Check the <b>correctness</b> of all <b>currently burning lights</b>.</li>
+                <li>Click on the <b>"Calculate"</b> button this will tell you which buttons you need to click again.**</li>
                 <li><a href="http://battlelog.battlefield.com/bf4/forum/threadview/2955065246879560123/1/" target="_blank">Continue the Guide</a></li>
             </ol>
+            <p>
+                <small>
+                    * If somebody did switch a button back click on the Toggle checkbox.<br/>
+                    ** When you have all lights in the table you only need to set the currently burning lights and click calculate again
+                </small>
+            </p>
         </section>
         <section>
             <h2>Locations</h2>
@@ -448,6 +491,11 @@
             
             var lightHistory = [[]];
             var lightHistoryIndex = 0;
+            
+            // sort numeric
+            function sortNumber(a,b) {
+                return a - b;
+            }
             
             // get last active lights
             var getLastActiveLights = function() {
@@ -481,6 +529,7 @@
             
             // set last acitve lights
             var setLastActiveLights = function(lastValues, ignoreHistory) {
+                lastValues.sort(sortNumber);
                 $('#last-input').val(lastValues.join(','));
                 
                 if (!ignoreHistory) {
@@ -512,7 +561,6 @@
                 $('#reset-lights').prop('disabled', false);
             });
             
-            
             // reset lights button
             $('#reset-lights').click(function() {
                 $('.light').prop('checked', false);
@@ -534,7 +582,7 @@
                 // get current checked values
                 var values = [];
                 $('.light:checked').each(function() {
-                    values.push($(this).data('number'));
+                    values.push(parseInt($(this).data('number')));
                 });
                 
                 // get last checked values
@@ -547,10 +595,12 @@
                         if (lastIndex !== -1) {
                             values.splice(lastIndex, 1);
                         } else {
-                            values.push(lastValues[i]);
+                            values.push(parseInt(lastValues[i]));
                         }
                     }
                 }
+                
+                values.sort(sortNumber);
                 
                 // set values for this analyse
                 $(this).closest('tr').find('.values').val(values.join(','));
