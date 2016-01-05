@@ -74,6 +74,8 @@
         /* Header */
         .header {
             padding-top: 20px;
+            background-color: #eee;
+            overflow: hidden;
         }
         
         /* Map */
@@ -247,7 +249,7 @@
             <h1>
                 BF4 Dragon Valley Easter Egg Helper<br/>
                 <small>
-                    v4.0<br/>
+                    v4.0.1<br/>
                     by Lexo91
                 </small>
             </h1>
@@ -820,6 +822,17 @@
                     }
                     
                     $progress.val(progress);
+                    
+                    trackProgress(progress);
+                }
+            }
+            
+            /* Track Progress */
+            function trackProgress(progress) {
+                try {
+                    ga('send', 'event', 'Bf4DVEasterEgg', 'Progress', 'State: ' + progress);
+                } catch (e) {
+                
                 }
             }
             
@@ -995,12 +1008,34 @@
                 if (!solved) {
                     resetToggles();
                     $errorMessage.show();
+                    trackFailed();
                 } else {
                     $successMessage.show();
                     activateToggles();
+                    trackSolved();
                 }
                 
                 BF4.Steps.updateProgress();
+            }
+            
+            /* trackSolved */
+            function trackSolved() {
+                try {
+                    var link = getLinkValues();
+                    ga('send', 'event', 'Bf4DVEasterEgg', 'Solved', link);
+                } catch (e) {
+                    
+                }
+            }
+            
+            /* trackFailed */
+            function trackFailed() {
+                try {
+                    var link = getLinkValues();
+                    ga('send', 'event', 'Bf4DVEasterEgg', 'Failed', link);
+                } catch (e) {
+                    
+                }
             }
             
             /* Create Link */
@@ -1009,7 +1044,12 @@
             }
             
             /* Get Link */
-            function getLink() {
+            function getLink() {                
+                return window.location.href.split('#')[0] + '#' + getLinkValues();
+            }
+            
+            /* Get Link Values */
+            function getLinkValues() {
                 var link = [];
                 
                 $valueInputs.each(function() {
@@ -1020,7 +1060,7 @@
                 link.push('c=' + BF4.Map.getCurrent());
                 link.push('l=' + BF4.Map.getLast());
                 
-                return window.location.href.split('#')[0] + '#' + link.join('&');
+                return link.join('&');
             }
             
             /* Set Link */
@@ -1042,7 +1082,6 @@
                                 }
                             }
                         } else if (index === 'l') {
-                            console.log(index, value);
                             BF4.Map.setLast(value);
                         } else {
                             setValue(index, value);
@@ -1071,7 +1110,10 @@
         });
     </script>
     <!-- Test Links
+    Test2:
     #0=2&1=4,5,6,7,10,15&2=1,3,9,11,12,13,16,17,19,20&3=1,2,17&4=8,11,12,13,14,18&5=2,8,14,18&6=7,10,11,12,13,15&7=4,5,6,16,19,20&c=2,3,9
+    Test3:
+    #0=10,16&1=1,3,4,14,19&2=2,7,8,12,15,17,18,20&3=1,2,3,4,5,7,8,9,11&4=6,10,13,16&5=5,6,9,11,13&6=1,3,4,10,16&7=12,14,17,19&c=10,15,16,18,20&l=10,15,16,18,20
     -->
     <script>
          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
