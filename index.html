@@ -2,754 +2,1077 @@
 <html>
 <head>
    <title>BF4: Dragon Valley Easter Egg Helper</title>
+   <!--
    <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+   -->
    <style>
+        /* Bacis */
         body {
-            margin: 40px 20px;
+            margin: 0;
             font-family: 'Droid Sans', sans-serif;
-            background: url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/simple_dashed.png");
+            background: url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/simple_dashed.png") black;
             color: #333;
             font-size: 13px;
         }
         
+        *, *:before, *:after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         .wrapper {
             background: white;
-            max-width: 560px;
-            padding: 10px 20px 40px;
+            max-width: 580px;
+            padding-top: 1px;
             margin: 0 auto;
             box-shadow: 0 0 10px #ccc;
         }
         
-        th, td {
+        a {
+            color: #333;
+        }
+        
+        td, th {
             text-align: left;
         }
         
-        .light {
-            display: none;
+        p {
+            margin: 15px 0;
         }
         
-        .light:checked+label {
-            color: #333;
-            background-color: yellow;
-        }
-        
-        .light+label {
-            display: block;
-            text-align: center;
-            line-height: 46px;
-            width: 46px;
-            height: 46px;
-            background-color: grey;
-            color: white;
-            cursor: pointer;
-            font-family: Sans-serif;
-        }
-        
-        #error {
-            display: none;
-            color: red;
-            text-align: right;
-        }
-        
-        .value-label {
-            font-weight: bold;
-            white-space: nowrap;
-        }
-        
-        .value-label-icon {
-            display: inline-block;
-            width: 15px;
-            text-align: center;
+        .padding-zero {
+            padding: 0 !important;
         }
         
         .text-center {
             text-align: center;
         }
         
-        .box-center {
-            display: inline-block;
+        .text-right {
+            text-align: right;
         }
         
-        .grid {
-            background: url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/gridme.png") top center;
-            padding: 25px 10px;
+        .text-left {
+            text-align: left;
         }
         
-        a {
-            color: blue;
+        button,
+        input[type=checkbox]+label {
+            cursor: pointer;
         }
         
-        ul, ol {
-            padding-left: 1.25em;
+        .none {
+            display: none;
         }
         
-        h1 {
-            font-size: 1.8em;
-            text-align: center;
+        input[readonly] {
+            background-color: #ccc;
+            border: 1px solid #aaa;
         }
         
-        h2 {
-            font-size: 1.5em;
-            text-align: center;
+        /* Header */
+        .header {
+            padding-top: 20px;
         }
         
-        table {
+        /* Map */
+        #map {
+            position: relative;
+            background: #ccc;
+            padding: 20px 20px;
+        }
+        
+        .lights {
             margin: 0 auto;
         }
         
-        iframe {
+        .light {
+            display: none;
+        }
+        
+        .light-label {
+            background: #999;
+            text-align: center;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            font-weight: bold;
+        }
+        
+        .light:checked+.light-label {
+            background: orange;
+        }
+        
+        .direction {
+            display: inline-block;
+            padding: 0 10px;
+            font-weight: bold;
+        }
+        
+        .direction-symbol {
+            font-size: 24px;
+        }
+        
+        .map-input {
+            width: 100%;
+        }
+        
+        .map-button {
+            display: inline-block;
+            background: #aaa;
             border: 0;
+            padding: 7px 12px;
+            font-weight: bold;
+            margin: 5px 0;
+            width: 100%;
+        }
+        
+        /* Progress */
+        .progress {
+        }
+        
+        .progress-bar[value] {
+            /* Reset the default appearance */
+            -webkit-appearance: none;
+            appearance: none;
+            
+            height: 3px;
+            width: 100%;
+            border: 0;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .progress-bar[value]::-webkit-progress-bar {
+            background-color: yellow;
+        }
+        
+        /* Steps */
+        #steps {
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .step {
+            padding: 20px 0;
+        }
+        
+        .step-select {
+            margin-bottom: 15px;
+        }
+        
+        .step-title {
+            font-weight: normal;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        
+        .step-button {
             display: block;
             margin: 0 auto;
+            background: orange;
+            border: 0;
+            padding: 5px 20px;
+            font-weight: bold;
+        }
+        
+        .step-button:disabled {
+            
+        }
+        
+        /* Result */
+        #result {
+            background: #ccc;
+            padding: 20px 20px;
+        }
+        
+        .result {
+            width: 100%;
+        }
+        
+        .location {
+            white-space: nowrap;
+        }
+        
+        .location-symbol {
+            display: inline-block;
+            text-align: center;
+            width: 25px;
+        }
+        
+        .solve {
+            margin-bottom: 20px;
+        }
+        
+        .result-button {
+            display: block;
+            margin: 0 auto;
+            background: green;
+            color: white;
+            border: 0;
+            padding: 5px 20px;
+            font-weight: bold;
+        }
+        
+        .result-button:disabled {
+            background: grey;
+            color: silver;
+            cursor: auto;
+        }
+        
+        .result-link {
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .result-success {
+            padding: 10px 0;
+            text-align: center;
+            color: green;
+        }
+        
+        .result-error {
+            padding: 10px 0;
+            text-align: center;
+            color: red;
         }
    </style>
 </head>
 <body>
-    <div class="wrapper">
-        <h1>
-            BF4 Dragon Valley Easter Egg Helper<br/>
-            <small>
-                v3.1<br/>
-                by Lexo91
-            </small>
-        </h1>
-        <p class="text-center">
-            Inspired by
-            <a href="https://www.youtube.com/watch?v=JuuzmOXL1bc" target="_blank"><strong>JackFraq</strong></a>
-            and 
-            <a href="https://www.youtube.com/watch?v=e6PcPuJOZ18" target="_blank"><strong>Apollo_v7</strong></a>
-            <br/>
-            I created a little helper to get all <strong>20 lamps</strong> burning.
-            <br/>
-            <br/>
-            <a href="http://battlelog.battlefield.com/bf4/forum/threadview/2979150494244429566/">Any Questions or Feedback?</a>
-        </p>
-        <section>
-            <fieldset class="grid">
-                <legend>
-                    Lamps
-                </legend>
-                <table>
-                    <thead>
-                        <tr>
-                            <th colspan="7" class="text-center">
-                                North
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="light1" id="light1" class="light" data-number="1" />
-                                <label for="light1">1</label>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="light2" id="light2" class="light" data-number="2" />
-                                <label for="light2">2</label>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="light3" id="light3" class="light" data-number="3" />
-                                <label for="light3">3</label>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="light4" id="light4" class="light" data-number="4" />
-                                <label for="light4">4</label>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="light5" id="light5" class="light" data-number="5" />
-                                <label for="light5">5</label>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="light6" id="light6" class="light" data-number="6" />
-                                <label for="light6">6</label>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="light7" id="light7" class="light" data-number="7" />
-                                <label for="light7">7</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="light20" id="light20" class="light" data-number="20" />
-                                <label for="light20">20</label>
-                            </td>
-                            <td colspan="5">
-                            </td>
-                            <td>
-                                <input type="checkbox" name="light8" id="light8" class="light" data-number="8" />
-                                <label for="light8">8</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="light19" id="light19" class="light" data-number="19" />
-                                <label for="light19">19</label>
-                            </td>
-                            <td colspan="5">
-                            </td>
-                            <td>
-                                <input type="checkbox" name="light9" id="light9" class="light" data-number="9" />
-                                <label for="light9">9</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="light18" id="light18" class="light" data-number="18" />
-                                <label for="light18">18</label>
-                            </td>
-                            <td colspan="5">
-                            </td>
-                            <td>
-                                <input type="checkbox" name="light10" id="light10" class="light" data-number="10" />
-                                <label for="light10">10</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="light17" id="light17" class="light" data-number="17" />
-                                <label for="light17">17</label>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="light16" id="light16" class="light" data-number="16" />
-                                <label for="light16">16</label>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="light15" id="light15" class="light" data-number="15" />
-                                <label for="light15">15</label>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="light14" id="light14" class="light" data-number="14" />
-                                <label for="light14">14</label>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="light13" id="light13" class="light" data-number="13" />
-                                <label for="light13">13</label>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="light12" id="light12" class="light" data-number="12" />
-                                <label for="light12">12</label>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="light11" id="light11" class="light" data-number="11" />
-                                <label for="light11">11</label>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="7" class="text-center">
-                                <br/>
-                                <label for="last-input" class="box-center">Last active Lights:</label>
-                                <div>
-                                    <button id="history-back" disabled>&#x2190;</button>
-                                    <input type="text" name="last-input" id="last-input" class="box-center" readonly />
-                                    <button id="history-forward" disabled>&#x2192;</button>
-                                </div>
-                                <button id="reset-lights" class="box-center" disabled>&#x21ba; Reset lights</button>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </fieldset>
-        </section>
-        <section>
-            <fieldset>
-                <legend>
-                    Triggers
-                </legend>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>
-                                Location
-                            </th>
-                            <th>
-                                Lights
-                            </th>
-                            <th>
-                                Set
-                            </th>
-                            <th>
-                                Toggle
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label class="value-label" for="values0">
-                                    <span class="value-label-icon">&#x2605;</span>
-                                    Beginning
-                                </label>
-                            </td>
-                            <td>
-                                <input type="text" name="values0" id="values0" class="values" readonly />
-                            </td>
-                            <td colspan="2">
-                                <button class="analyse" id="analyse0">
-                                    Set Lights
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="value-label" for="values1">
-                                    <span class="value-label-icon">&#x1f384;</span>
-                                    Tree (A)
-                                </label>
-                            </td>
-                            <td>
-                                <input type="text" name="values1" id="values1" class="values" readonly />
-                            </td>
-                            <td>
-                                <button class="analyse" id="analyse1" disabled>
-                                    Trigger
-                                </button>
-                            </td>
-                            <td>
-                                <input type="checkbox" class="toggle" id="toggle1" disabled />
-                                <label for="toggle1"></label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="value-label" for="values2">
-                                    <span class="value-label-icon">&#x25B2;</span>
-                                    Pagoda (B)
-                                </label>
-                            </td>
-                            <td>
-                                <input type="text" name="values2" id="values2" class="values" readonly />
-                            </td>
-                            <td>
-                                <button class="analyse" id="analyse2" disabled>
-                                    Trigger
-                                </button>
-                            </td>
-                            <td>
-                                <input type="checkbox" class="toggle" id="toggle2" disabled />
-                                <label for="toggle2"></label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="value-label" for="values3">
-                                    <span class="value-label-icon">&#9632;</span>
-                                    Furnace (C)
-                                </label>
-                            </td>
-                            <td>
-                                <input type="text" name="values3" id="values3" class="values" readonly />
-                            </td>
-                            <td>
-                                <button class="analyse" id="analyse3" disabled>
-                                    Trigger
-                                </button>
-                            </td>
-                            <td>
-                                <input type="checkbox" class="toggle" id="toggle3" disabled />
-                                <label for="toggle3"></label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="value-label" for="values4">
-                                    <span class="value-label-icon">&#x1f4a7;</span>
-                                    Waterfall (D)
-                                </label>
-                            </td>
-                            <td>
-                                <input type="text" name="values4" id="values4" class="values" readonly />
-                            </td>
-                            <td>
-                                <button class="analyse" id="analyse4" disabled>
-                                    Trigger
-                                </button>
-                            </td>
-                            <td>
-                                <input type="checkbox" class="toggle" id="toggle4" disabled />
-                                <label for="toggle4"></label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="value-label" for="values5">
-                                    <span class="value-label-icon">&#x1f48e;</span>
-                                    Rock (E)
-                                </label>
-                            </td>
-                            <td>
-                                <input type="text" name="values5" id="values5" class="values" readonly />
-                            </td>
-                            <td>
-                                <button class="analyse" id="analyse5" disabled>
-                                    Trigger
-                                </button>
-                            </td>
-                            <td>
-                                <input type="checkbox" class="toggle" id="toggle5" disabled />
-                                <label for="toggle5"></label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="value-label" for="values6">
-                                    <span class="value-label-icon">&#x2630;</span>
-                                    Pier (G)
-                                </label>
-                            </td>
-                            <td>
-                                <input type="text" name="values6" id="values6" class="values" readonly />
-                            </td>
-                            <td>
-                                <button class="analyse" id="analyse6" disabled>
-                                    Trigger
-                                </button>
-                            </td>
-                            <td>
-                                <input type="checkbox" class="toggle" id="toggle6" disabled />
-                                <label for="toggle6"></label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="value-label" for="values7">
-                                    <span class="value-label-icon">&#x262f;</span>
-                                    Temple (H)
-                                </label>
-                            </td>
-                            <td>
-                                <input type="text" name="values7" id="values7" class="values" readonly />
-                            </td>
-                            <td>
-                                <button class="analyse" id="analyse7" disabled>
-                                    Trigger
-                                </button>
-                            </td>
-                            <td>
-                                <input type="checkbox" class="toggle" id="toggle7" disabled />
-                                <label for="toggle7"></label>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="2">
-                                <button id="reset-toggle" disabled>
-                                    &#x21b6; Reset Toggle Status
-                                </button>    
-                            </td>
-                            <td colspan="2">
-                                <button id="magic-toggle" disabled>
-                                    &#x261e; Calculate
-                                </button>    
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <button id="reset-trigger" disabled>
-                                    &#x21b6; Reset Triggers
-                                </button>    
-                            </td>
-                            <td colspan="2">
-                                <div id="error">Error</div>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </fieldset>
-        </section>
-        <section>
-            <h2>How to use this helper</h2>
-            <ol>
-                <li>Check all currently burning lights and click <b>"Set Lights"</b> for <b>"Beginning"</b>.</li>
-                <li>Go to a <b>button</b> trigger it <b>check all currently burning lights</b> and click <b>"Trigger" (<b>ATTENTION</b>: don't switch the button back!)</b>.*</li>
-                <li>Continue doing this for the other buttons.</li>
-                <li>Check the <b>correctness</b> of all <b>currently burning lights</b>.</li>
-                <li>Click on the <b>"Calculate"</b> button this will tell you which buttons you need to click again.**</li>
-                <li><a href="http://battlelog.battlefield.com/bf4/forum/threadview/2955065246879560123/1/" target="_blank">Continue the Guide</a></li>
-            </ol>
-            <p>
+    <article class="wrapper">
+        <header class="header text-center">
+            <h1>
+                BF4 Dragon Valley Easter Egg Helper<br/>
                 <small>
-                    * If somebody did switch a button back click on the Toggle checkbox.<br/>
-                    ** When you have all lights in the table you only need to set the currently burning lights and click calculate again
+                    v4.0<br/>
+                    by Lexo91
                 </small>
+            </h1>
+            <p>
+                Inspired by
+                <a href="https://www.youtube.com/watch?v=JuuzmOXL1bc" target="_blank"><strong>JackFraq</strong></a>
+                and 
+                <a href="https://www.youtube.com/watch?v=e6PcPuJOZ18" target="_blank"><strong>Apollo_v7</strong></a>
+                <br/>
+                I created a little helper to get all <strong>20 lamps</strong> burning.
+                <br/>
+                <br/>
+                A special thanks to <strong><a href="http://battlelog.battlefield.com/bf4/user/PsychoDuckUK/" target="_blank">PsychoDuckUK</a></strong> helping me fix a bug in this app.
+                <br/>
+                <br/>
+                <a href="http://battlelog.battlefield.com/bf4/forum/threadview/2979150494244429566/" target="_blank">Any Questions or Feedback?</a>
             </p>
+        </header>
+        <section id="map">
+            <table class="lights">
+                <thead>
+                    <tr>
+                        <td colspan="3">
+                            <button id="map-reset-button" class="map-button">Reset Lamps</button><br/>
+                        </td>
+                        <td colspan="1">
+                            
+                        </td>
+                        <td colspan="3" class="text-right">
+                            <button id="map-current-last-button" class="map-button">Current as Last</button>
+                        </td>
+                    </tr>
+                    <tr id="reset-to-init" class="none">
+                        <td colspan="1"></td>
+                        <td colspan="5">
+                            <button id="map-reset-init" class="map-button">Reset to Initial State</button>
+                        </td>
+                        <td colspan="1"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="7">
+                            &nbsp;
+                        </td>
+                    </tr'>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="light1" id="light1" class="light" data-number="1" />
+                            <label class="light-label" for="light1">1</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="light2" id="light2" class="light" data-number="2" />
+                            <label class="light-label" for="light2">2</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="light3" id="light3" class="light" data-number="3" />
+                            <label class="light-label" for="light3">3</lab class="light-label"el>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="light4" id="light4" class="light" data-number="4" />
+                            <label class="light-label" for="light4">4</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="light5" id="light5" class="light" data-number="5" />
+                            <label class="light-label" for="light5">5</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="light6" id="light6" class="light" data-number="6" />
+                            <label class="light-label" for="light6">6</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="light7" id="light7" class="light" data-number="7" />
+                            <label class="light-label" for="light7">7</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="light20" id="light20" class="light" data-number="20" />
+                            <label class="light-label" for="light20">20</label>
+                        </td>
+                        <td colspan="5" class="text-center">
+                            <span class="direction">North</span>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="light8" id="light8" class="light" data-number="8" />
+                            <label class="light-label" for="light8">8</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="light19" id="light19" class="light" data-number="19" />
+                            <label class="light-label" for="light19">19</label>
+                        </td>
+                        <td colspan="2" class="text-left">
+                            <span class="direction">West</span>
+                        </td>
+                        <td class="text-center">
+                             <span class="direction-symbol">&#11033;</span>
+                        </td>
+                        <td colspan="2" class="text-right">
+                            <span class="direction">East</span>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="light9" id="light9" class="light" data-number="9" />
+                            <label class="light-label" for="light9">9</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="light18" id="light18" class="light" data-number="18" />
+                            <label class="light-label" for="light18">18</label>
+                        </td>
+                        <td colspan="5" class="text-center">
+                            <span class="direction">South</span>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="light10" id="light10" class="light" data-number="10" />
+                            <label class="light-label" for="light10">10</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="light17" id="light17" class="light" data-number="17" />
+                            <label class="light-label" for="light17">17</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="light16" id="light16" class="light" data-number="16" />
+                            <label class="light-label" for="light16">16</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="light15" id="light15" class="light" data-number="15" />
+                            <label class="light-label" for="light15">15</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="light14" id="light14" class="light" data-number="14" />
+                            <label class="light-label" for="light14">14</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="light13" id="light13" class="light" data-number="13" />
+                            <label class="light-label" for="light13">13</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="light12" id="light12" class="light" data-number="12" />
+                            <label class="light-label" for="light12">12</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="light11" id="light11" class="light" data-number="11" />
+                            <label class="light-label" for="light11">11</label>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">
+                            Current Lights:
+                        </td>
+                        <td colspan="4">
+                            <input id="map-current" class="map-input" type="text" value="" readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            Last Lights:
+                        </td>
+                        <td colspan="4">
+                            <input id="map-last" class="map-input" type="text" value="" readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            Changed Lights:
+                        </td>
+                        <td colspan="4">
+                            <input id="map-changed" class="map-input" type="text" value="" readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            Untoggleable Lights:
+                        </td>
+                        <td colspan="4">
+                            <input id="map-untoggled" class="map-input" type="text" value="" readonly />
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
         </section>
-        <section>
-            <h2>Locations</h2>
-            <iframe src="https://www.youtube.com/embed/e6PcPuJOZ18" width="480" height="260"></iframe>
+        <section id="steps">
+            <progress id="progress" class="progress-bar" value="0" max="9"></progress>
+            <section id="step1" class="step">
+                <h2 class="step-title">Go to the temple at <b>H</b> and turn above all currently burning lamps on.</h2>
+                <button id="init-button" class="step-button">Next</button>
+            </section>
+            <section id="step2" class="step none">
+                <h2 class="step-title">Choose a button trigger it and turn the lights correctly above</h2>
+                <div class="text-center">
+                    <select id="location" class="step-select">
+                        <option value="1">&#x1f384; Tree (A)</option>
+                        <option value="2">&#x25B2; Pagoda (B)</option>
+                        <option value="3">&#9632; Furnace (C)</option>
+                        <option value="4">&#x1f4a7; Waterfall (D)</option>
+                        <option value="5">&#x1f48e; Rock (E)</option>
+                        <option value="6">&#x2630; Pier (G)</option>
+                        <option value="7">&#x262f; Temple (H)</option>
+                    </select>
+                </div>
+                <button id="save-button" class="step-button">Save</button>
+            </section>
+            <section id="step3" class="step none">
+                <h2 class="step-title padding-zero">Check the lights above and click solve to get the result</h2>
+            </section>
+        </section>
+        <section id="result" class="none">
+            <div id="solve" class="solve none">
+                <button id="solve-button" class="result-button">
+                    Solve
+                </button>
+                <div id="success-message" class="result-success none">
+                    Result found!
+                </div>
+                <div id="error-message" class="result-error none">
+                    No Result found!
+                </div>
+            </div>
+            <table class="result">
+                <thead>
+                    <tr>
+                        <th>
+                            Location
+                        </th>
+                        <th>
+                            Lights
+                        </th>
+                        <th>
+                            Result
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="location0" class="location">
+                            <span class="location-symbol">&#x2605;</span>
+                            Initial State
+                        </td>
+                        <td>
+                            <input id="value0" class="value-input" type="text" value="" />
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="location1" class="location">
+                            <span class="location-symbol">&#x1f384;</span>
+                            Tree (A)
+                        </td>
+                        <td>
+                            <input id="value1" class="value-input" type="text" value="" />
+                        </td>
+                        <td>
+                            <input class="toggle-button" type="checkbox" id="toggle1" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="location2" class="location">
+                            <span class="location-symbol">&#x25B2;</span>
+                            Pagoda (B)
+                        </td>
+                        <td>
+                            <input id="value2" class="value-input" type="text" value="" />
+                        </td>
+                        <td>
+                            <input class="toggle-button" type="checkbox" id="toggle2" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="location3" class="location">
+                            <span class="location-symbol">&#9632;</span>
+                            Furnace (C)
+                        </td>
+                        <td>
+                            <input id="value3" class="value-input" type="text" value="" />
+                        </td>
+                        <td>
+                            <input class="toggle-button" type="checkbox" id="toggle3" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="location4" class="location">
+                            <span class="location-symbol">&#x1f4a7;</span>
+                            Waterfall (D)
+                        </td>
+                        <td>
+                            <input id="value4" class="value-input" type="text" value="" />
+                        </td>
+                        <td>
+                            <input class="toggle-button" type="checkbox" id="toggle4" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="location5" class="location">
+                            <span class="location-symbol">&#x1f48e;</span>
+                            Rock (E)
+                        </td>
+                        <td>
+                            <input id="value5" class="value-input" type="text" value="" />
+                        </td>
+                        <td>
+                            <input class="toggle-button" type="checkbox" id="toggle5" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="location6" class="location">
+                            <span class="location-symbol">&#x2630;</span>
+                            Pier (G)
+                        </td>
+                        <td>
+                            <input id="value6" class="value-input" type="text" value="" />
+                        </td>
+                        <td>
+                            <input class="toggle-button" type="checkbox" id="toggle6" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="location7" class="location">
+                            <span class="location-symbol">&#x262f;</span>
+                            Temple (H)
+                        </td>
+                        <td>
+                            <input id="value7" class="value-input" type="text" value="" />
+                        </td>
+                        <td>
+                            <input class="toggle-button" type="checkbox" id="toggle7" disabled />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <p class="text-center">
+                    <button id="create-link" class="result-button">Create Share Link</button>
+                    <input id="link-box" type="text" class="result-link" />
+                </p>
+            </div>
         </section>
     </div>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script>        
-        $(document).ready(function() {
-            // convert string to numeric
-            var toNumeric = function(n,i) {
-                return isNaN(parseInt(n)) ? n : parseInt(n);
-            };
-            
-            var lightHistory = [[]];
-            var lightHistoryIndex = 0;
-            
-            // sort numeric
-            function sortNumber(a,b) {
+    <script>
+        /* Map Module */
+        var utils = (function(document, window, $, undefined) {
+            /* Sort Numeric */
+            function sortNumeric(a,b) {
                 return a - b;
             }
             
-            // get last active lights
-            var getLastActiveLights = function() {
-                return $.map($('#last-input').val().split(','), toNumeric);
-            };
-            
-            // set current as last
-            var setCurrentAsLast = function() {
-                var lastValues = [];
-                $('.light:checked').each(function() {
-                    lastValues.push($(this).data('number'));
-                });
-                
-                setLastActiveLights(lastValues, false);
-            };
-            
-            // last active history navigation
-            var lastActiveHistory = function() {
-                if (lightHistoryIndex >= 0 && lightHistoryIndex < lightHistory.length) {
-                    setLastActiveLights(lightHistory[lightHistoryIndex], true)
-                } else {
-                    if (lightHistoryIndex < 0) {
-                        lightHistoryIndex = 0;
-                    }
-                    
-                    if (lightHistoryIndex >= lightHistory.length) {
-                        lightHistoryIndex = lightHistory.length - 1;
-                    }
+            /* String to Array */
+            function toArray(val) {
+                if (Array.isArray(val)) {
+                    return val;
                 }
-            };
             
-            // set last acitve lights
-            var setLastActiveLights = function(lastValues, ignoreHistory) {
-                lastValues.sort(sortNumber);
-                $('#last-input').val(lastValues.join(','));
-                
-                if (!ignoreHistory) {
-                    lightHistory.push(lastValues);
-                    lightHistoryIndex = lightHistory.length - 1;
-                }
-                
-                if (lightHistoryIndex === 0) {
-                    $('#history-back').prop('disabled', true);
-                } else {
-                    $('#history-back').prop('disabled', false);
-                }
-                
-                if (lightHistoryIndex < lightHistory.length-1) {
-                    $('#history-forward').prop('disabled', false);
-                } else {
-                    $('#history-forward').prop('disabled', true);
-                }
-            };
-            
-            // reset toggle to uncheck
-            var resetToggle = function() {
-                $('.toggle').prop('checked', false);
-            };
-            
-            // light clicked
-            $('.light').click(function() {
-                // activate reset light button
-                $('#reset-lights').prop('disabled', false);
-            });
-            
-            // reset lights button
-            $('#reset-lights').click(function() {
-                $('.light').prop('checked', false);
-                getLastActiveLights();
-                
-                // get last checked values
-                var lastValues = getLastActiveLights();
-                
-                // check last values
-                for (var i in lastValues) {
-                    if (lastValues[i]) {
-                        $('#light'+lastValues[i]).prop('checked', true);
-                    }
-                }
-            });
+                return val.split(',');
+            }
         
-            // analyse
-            $('.analyse').click(function() {
-                // get current checked values
-                var values = [];
+            return {
+                toArray: toArray,
+                sortNumeric: sortNumeric
+            }
+        })(document, window, jQuery);
+    
+        var BF4 = {};
+        
+        /* Map Module */
+        BF4.Map = (function(document, window, $, undefined) {
+            var $light = $('.light'),
+                $current = $('#map-current'),
+                $last = $('#map-last'),
+                $changed = $('#map-changed'),
+                $untoggled = $('#map-untoggled'),
+                $currentLastButton = $('#map-current-last-button'),
+                $resetToInitButton = $('#reset-to-init'),
+                $resetButton = $('#map-reset-button');
+        
+            /* Init Map */
+            function init() {
+                $light.change(lightChanged);
+                $currentLastButton.click(setCurrentAsLast);
+                $resetButton.click(resetLamps);
+                $resetToInitButton.click(resetToInit);
+            }
+            
+            /* Reset to init */
+            function resetToInit() {
+                setLast(BF4.Result.getValue(0));
+                resetLamps();
+            }
+            
+            /* Reset Lamps */
+            function resetLamps() {
+                $('.light').prop('checked', false);
+                var last = utils.toArray(getLast());
+                
+                for (var i in last) {
+                    $('#light' + last[i]).prop('checked', true);
+                }
+                
+                lightChanged();
+            }
+            
+            /* Burning Lamps */
+            function getBurningLightsCount() {
+                return $('.light:checked').length;
+            }
+            
+            /* Light Changed */
+            function lightChanged() {
+                var lights = [];
                 $('.light:checked').each(function() {
-                    values.push(parseInt($(this).data('number')));
+                    lights.push($(this).data('number'));
                 });
                 
-                // get last checked values
-                var lastValues = getLastActiveLights();
-                
-                // remove unchanged and add removed
-                for (var i in lastValues) {
-                    if (lastValues[i]) {
-                        var lastIndex = $.inArray(lastValues[i], values);
+                setCurrent(lights);
+                setChanged(calculateChanges());
+            }
+            
+            /* Calculate Changes */
+            function calculateChanges() {
+                var values = utils.toArray(getCurrent()),
+                    last = utils.toArray(getLast());
+                    
+                for (var i in last) {
+                    if (last[i]) {
+                        var lastIndex = $.inArray(last[i], values);
                         if (lastIndex !== -1) {
                             values.splice(lastIndex, 1);
                         } else {
-                            values.push(parseInt(lastValues[i]));
+                            values.push(last[i]);
                         }
                     }
                 }
                 
-                values.sort(sortNumber);
-                
-                // set values for this analyse
-                $(this).closest('tr').find('.values').val(values.join(','));
-                
-                // set this as last
-                setCurrentAsLast();
-                
-                // enabled other analyse
-                if ($(this).attr('id') === 'analyse0') {
-                    $('.analyse').prop('disabled', false);
-                } else {
-                    $('#reset-trigger').prop('disabled', false);
-                }
-                
-                // disabled reanalyse
-                $(this).prop('disabled', true);
-                // enable toggle button
-                $('#' + $(this).attr('id').replace('analyse', 'toggle')).prop('disabled', false);
-                
-                // enabled calculate
-                if ($('.analyse:disabled').length === 8) {
-                    $('#magic-toggle').prop('disabled', false);
-                }
-            });
+                return values;
+            }
             
-            $('.toggle').click(function() {
-                // get currently toggle values
-                var toggleValues = $.map($(this).closest('tr').find('.values').val().split(','), toNumeric);
-                // toggle checkbox
-                $.each(toggleValues, function(index, item) {
-                    var $checkbox = $('[data-number='+item+']');
-                    $checkbox.prop('checked', !$checkbox.prop('checked'));
+            /* Current as Last */
+            function setCurrentAsLast() {
+                setLast(getCurrent());
+            }
+            
+            /* Current */
+            function getCurrent() {
+                return $current.val();
+            }
+            
+            function setCurrent(values) {
+                setValue($current, values);
+                setChanged(calculateChanges());
+            }
+            
+            /* Last */
+            function getLast() {
+                return $last.val();
+            }
+            
+            function setLast(values) {
+                setValue($last, values);
+                setChanged(calculateChanges());
+            }
+            
+            /* Changed */
+            function getChanged() {
+                return $changed.val();
+            }
+            
+            function setChanged(values) {
+                setValue($changed, values);
+            }
+            
+            /* Untoggled */
+            function getUntoggled() {
+                return $untoggled.val();
+            }
+            
+            function setUntoggled(values) {
+                setValue($untoggled, values);
+            }
+            
+            /* Set Value Helper */
+            function setValue($input, values) {
+                if (Array.isArray(values)) {
+                    values.sort(utils.sortNumeric);
+                    values = values.join(',');
+                }
+                $input.val(values.replace(/(^,)|(,$)/g, ""));
+            }
+            
+            /* Toggle */
+            function toggle(values) {
+                var uniqueButtons = BF4.Result.getUniqueButtons(),
+                    values = utils.toArray(values);
+                setUntoggled(uniqueButtons);
+                
+                for (var i in values) {
+                    var index = $.inArray(parseInt(values[i], 10), uniqueButtons);
+                    if (index === -1) {
+                        toggleLight(values[i]);
+                    }
+                }
+            }
+            
+            /* Toggle Light */
+            function toggleLight(i) {
+                var $light = $('#light' + i);
+                $light.prop('checked', !$light.prop('checked'));
+            }
+            
+            return {
+                init: init,
+                getCurrent: getCurrent,
+                getLast: getLast,
+                setLast: setLast,
+                getChanged: getChanged,
+                setCurrentAsLast: setCurrentAsLast,
+                resetLamps: resetLamps,
+                getBurningLightsCount: getBurningLightsCount,
+                toggle: toggle
+            }
+        })(document, window, jQuery);
+    
+        /* Steps Module */
+        BF4.Steps = (function(document, window, $, undefined) {
+            var $saveButton = $('#save-button'),
+                $initButton = $('#init-button'),
+                $location = $('#location'),
+                $progress = $('#progress'),
+                lastProgress = 0;
+        
+            /* Init Steps */
+            function init() {
+                $initButton.click(initClicked);
+                $saveButton.click(saveSelect);
+                $valueInputs.change(updateProgress);
+            }
+            
+            /* Update Progress */
+            function updateProgress() {
+                var progress = BF4.Result.getProgress();
+                
+                if (progress != lastProgress) {
+                    // Step 1
+                    if (progress === 0) {
+                        $('#step1').show();
+                        $('#step2').hide();
+                        $('#step3').hide();
+                        $('#reset-to-init').hide();
+                    // Step 2
+                    } else if (progress > 0 && progress < 7) {
+                        $('#step1').hide();
+                        $('#step2').show();
+                        $('#step3').hide();
+                        $('#result').show();
+                        $('#reset-to-init').show();
+                    // Step 3
+                    } else if (progress > 7) {
+                        $('#step1').hide();
+                        $('#step2').hide();
+                        $('#step3').show();
+                        $('#result').show();
+                        $('#solve').show();
+                        $('#reset-to-init').show();
+                    }
+                    
+                    $progress.val(progress);
+                }
+            }
+            
+            /* Save Select */
+            function saveSelect() {
+                BF4.Result.setValue($location.val(), BF4.Map.getChanged());
+                BF4.Map.setCurrentAsLast();
+                updateProgress();
+                setNextLocation();
+            }
+            
+            /* Set Next Location */
+            function setNextLocation() {
+                $location.val(BF4.Result.getNextEmptyLocationNumber());
+            }
+            
+            /* Init Button Click */
+            function initClicked() {
+                BF4.Result.setValue(0, BF4.Map.getCurrent());
+                BF4.Map.setCurrentAsLast();
+                updateProgress();
+            }
+            
+            return {
+                init: init,
+                updateProgress: updateProgress
+            }
+        })(document, window, jQuery);
+        
+        /* Result Module */
+        BF4.Result = (function(document, window, $, undefined) {
+            var $solveButton = $('#solve-button')
+                $valueInputs = $('.value-input'),
+                $toggleButtons = $('.toggle-button'),
+                $createLinkButton = $('#create-link'),
+                $linkBox = $('#link-box'),
+                $successMessage = $('#success-message'),
+                $errorMessage = $('#error-message');
+        
+            /* Init Result */
+            function init() {
+                $solveButton.click(solve);
+                $createLinkButton.click(createLink);
+                $toggleButtons.click(toggleClick);
+                setLink();
+            }
+            
+            /* Get Result Progress */
+            function getProgress() {
+                var progress = 0;
+                $valueInputs.each(function() {
+                    if ($(this).val()) {
+                        progress++;
+                    }
                 });
                 
-                // set as current
-                setCurrentAsLast();
-                
-                // enable reset toggle button
-                if ($('.toggle:checked').length) {
-                    $('#reset-toggle').prop('disabled', false);
-                } else {
-                   $('#reset-toggle').prop('disabled', true);
+                if ($successMessage.is(':visible')) {
+                    progress++;
                 }
-            });
+                
+                return progress;
+            }
             
-            // calculate button click
-            $('#magic-toggle').click(function() {
-                // hide error message
-                $('#error').hide();
-                // reset toggles
-                resetToggle();
+            /* Next Empty Locaton Number */
+            function getNextEmptyLocationNumber() {
+                var resultValue = 1;
+                $valueInputs.each(function() {
+                    var value = parseInt($(this).attr('id').replace('value', ''), 10);
+                    if (value && !$(this).val()) {
+                        resultValue = value;
+                    }
+                });
                 
-                // get currently checked
-                var $currentChecked = $('.light:checked');
+                return resultValue;
+            }
+            
+            /* Toggle Click */
+            function toggleClick() {
+                var i = $(this).attr('id').replace('toggle', '');
+                toggle(i);
+            }
+            
+            /* Toggle */
+            function toggle(i, simToggle) {
+                if (simToggle) {
+                    $('#toggle' + i).prop('checked', !$('#toggle' + i).prop('checked'));
+                }
+                BF4.Map.toggle($('#value' + i).val());
+            }
+            
+            /* Reset Toggle Status */
+            function resetToggles() {
+                $toggleButtons.prop('checked', false);
+            }
+            
+            /* Reset Toggle Status */
+            function activateToggles() {
+                $toggleButtons.prop('disabled', false);
+            }
+            
+            /* Reset Toggle Status */
+            function deactivateToggles() {
+                $toggleButtons.prop('disabled', true);
+            }
+            
+            /* Get Unique Buttons */
+            function getUniqueButtons() {
+                var counts =
+                    [0,0,0,0,0,0,0,
+                     0,          0,
+                     0,          0,
+                     0,          0,
+                     0,0,0,0,0,0,0],
+                     uniques = [];
+            
+                $valueInputs.each(function() {
+                    var buttonValues = utils.toArray($(this).val());
+                    for (var i in buttonValues) {
+                        var index = buttonValues[i] - 1;
+                        counts[index]++;
+                    }
+                });
                 
-                var solution = false;
+                for (var i in counts) {
+                    if (counts[i] === 1) {
+                        uniques.push((parseInt(i, 10)+1));
+                    }
+                }
+                
+                return uniques;
+            }
+            
+            /* Set Value */
+            function setValue(i, value) {
+                $('#value' + i).val(value);
+            }
+            
+            /* Get Values */
+            function getValue(i) {
+                return $('#value' + i).val();
+            }
+            
+            /* Solve */
+            function solve() {
+                deactivateToggles();
+                $successMessage.hide();
+                $errorMessage.hide();
+                BF4.Map.setCurrentAsLast();
+                
+                var solved = false;
+                
                 // try all 128 combinations
                 for (var i = 0; i<128; i++) {
+                    resetToggles();
                     $.each([1,2,4,8,16,32,64], function(index, x) {
                         index = index + 1;
-                        var $toggleBox = $('#toggle' + index);
-                        var doToggle = false;
-                        // is active
                         if (x & i) {
-                            // toggle when not active
-                            if (!$toggleBox.prop('checked')) {
-                                doToggle = true;
-                            }
-                        } else {
-                            // toggle when active
-                            if ($toggleBox.prop('checked')) {
-                                doToggle = true;
-                            }
-                        }
-                        
-                        // do the toggle when needed
-                        if (doToggle) {
-                            $toggleBox.click();
+                            toggle(index, true);
                         }
                     });
                     
-                    // if all lamps correct
-                    if ($('.light:checked').length === 20) {
+                    if (BF4.Map.getBurningLightsCount() === 20) {
+                        solved = true;
+                    }
+                    
+                    BF4.Map.resetLamps();
+                    
+                    if (solved) {
                         break;
                     }
                 }
                 
-                // show error message  when not correct and reset toggles
-                if ($('.light:checked').length !== 20) {
-                    $('#error').show();
-                    resetToggle();
+                if (!solved) {
+                    resetToggles();
+                    $errorMessage.show();
+                } else {
+                    $successMessage.show();
+                    activateToggles();
                 }
                 
-                // uncheck all lights
-                $('.light').prop('checked', false);
-                // check old lights
-                $currentChecked.prop('checked', true);
-                // set old as current
-                setCurrentAsLast();
-            });
+                BF4.Steps.updateProgress();
+            }
             
-            // reset toggle click
-            $('#reset-toggle').click(function() {
-                // reset checkboxes
-                resetToggle();
-                $('#reset-toggle').prop('disabled', true);
-            });
+            /* Create Link */
+            function createLink() {
+                $linkBox.val(getLink());
+            }
             
-            // values double click
-            $('.values').dblclick(function() {
-                // allow edit on double click
-                if ($(this).attr('id') === 'values0' || $('#analyse0').prop('disabled')) {
-                    $(this).prop('readonly', false);
-                }
-            });
+            /* Get Link */
+            function getLink() {
+                var link = [];
+                
+                $valueInputs.each(function() {
+                    var index = $(this).attr('id').replace('value', '');
+                    link.push(index + '=' + $(this).val());
+                });
+                
+                link.push('c=' + BF4.Map.getCurrent());
+                link.push('l=' + BF4.Map.getLast());
+                
+                return window.location.href.split('#')[0] + '#' + link.join('&');
+            }
             
-            // values exit
-            $('.values').blur(function() {
-                // set readonly on blur
-                if (!$(this).prop('readonly')) {
-                    $(this).prop('readonly', true);
-                    if ($(this).attr('id') === 'values0' && !$('#analyse0').prop('disabled')) {
-                        $('.analyse').prop('disabled', false);
+            /* Set Link */
+            function setLink() {
+                var link = window.location.hash.slice(1);
+                
+                if (link) {
+                    var values = link.split('&');
+                    for (var i in values) {
+                        var input = values[i].split('=');
+                        var index = input[0],
+                            value = input[1];
+                        
+                        if (index === 'c') {
+                            var checked = utils.toArray(value);
+                            for (var x in checked) {
+                                if (checked[x]) {
+                                    $('#light' + checked[x]).click();
+                                }
+                            }
+                        } else if (index === 'l') {
+                            console.log(index, value);
+                            BF4.Map.setLast(value);
+                        } else {
+                            setValue(index, value);
+                        }
                     }
-                    
-                    $('#' + $(this).attr('id').replace('values', 'toggle')).prop('disabled', false);
-                    $('#' + $(this).attr('id').replace('values', 'analyse')).prop('disabled', true);
+                
+                    BF4.Steps.updateProgress();
                 }
-            });
+            }
             
-            // reset triggers
-            $('#reset-trigger').click(function() {
-                $('.analyse').prop('disabled', false);
-                $('#analyse0').prop('disabled', true);
-            });
-            
-            // last active history back
-            $('#history-back').click(function() {
-                lightHistoryIndex = lightHistoryIndex - 1;
-                lastActiveHistory();
-            });
-            
-            // last active history forward
-            $('#history-forward').click(function() {
-                lightHistoryIndex = lightHistoryIndex + 1;
-                lastActiveHistory();
-            });
+            return {
+                init: init,
+                getProgress: getProgress,
+                getNextEmptyLocationNumber: getNextEmptyLocationNumber,
+                getUniqueButtons: getUniqueButtons,
+                setValue: setValue,
+                getValue: getValue
+            }
+        })(document, window, jQuery);
+        
+        /* Init Whole App */
+        jQuery(document).ready(function() {
+            BF4.Map.init();
+            BF4.Steps.init();
+            BF4.Result.init();
         });
     </script>
+    <!-- Test Links
+    #0=2&1=4,5,6,7,10,15&2=1,3,9,11,12,13,16,17,19,20&3=1,2,17&4=8,11,12,13,14,18&5=2,8,14,18&6=7,10,11,12,13,15&7=4,5,6,16,19,20&c=2,3,9
+    -->
     <script>
          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
