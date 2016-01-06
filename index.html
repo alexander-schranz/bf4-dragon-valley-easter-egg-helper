@@ -249,7 +249,7 @@
             <h1>
                 BF4 Dragon Valley Easter Egg Helper<br/>
                 <small>
-                    v4.0.1<br/>
+                    v4.0.2<br/>
                     by Lexo91
                 </small>
             </h1>
@@ -259,7 +259,7 @@
                 and 
                 <a href="https://www.youtube.com/watch?v=e6PcPuJOZ18" target="_blank"><strong>Apollo_v7</strong></a>
                 <br/>
-                I created a little helper to get all <strong>20 lamps</strong> burning.
+                I created a little helper to get all <strong>20 lights</strong> burning.
                 <br/>
                 <br/>
                 A special thanks to <strong><a href="http://battlelog.battlefield.com/bf4/user/PsychoDuckUK/" target="_blank">PsychoDuckUK</a></strong> helping me fix a bug in this app.
@@ -273,7 +273,7 @@
                 <thead>
                     <tr>
                         <td colspan="3">
-                            <button id="map-reset-button" class="map-button">Reset Lamps</button><br/>
+                            <button id="map-reset-button" class="map-button">Reset Lights</button><br/>
                         </td>
                         <td colspan="1">
                             
@@ -293,7 +293,7 @@
                         <td colspan="7">
                             &nbsp;
                         </td>
-                    </tr'>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr>
@@ -472,7 +472,8 @@
                     Result found!
                 </div>
                 <div id="error-message" class="result-error none">
-                    No Result found!
+                    No Result found! Please check the currently burning lights.<br/>
+                    Lights in "Untoggleable Lights" should burn permanently.
                 </div>
             </div>
             <table class="result">
@@ -751,6 +752,11 @@
                     values = utils.toArray(values);
                 setUntoggled(uniqueButtons);
                 
+                // will turn unique buttons on because they are ignored
+                for (var x in uniqueButtons) {
+                    $('#light' + uniqueButtons[x]).prop('checked', true);
+                }
+                
                 for (var i in values) {
                     var index = $.inArray(parseInt(values[i], 10), uniqueButtons);
                     if (index === -1) {
@@ -804,6 +810,7 @@
                         $('#step2').hide();
                         $('#step3').hide();
                         $('#reset-to-init').hide();
+                        BF4.Result.deactivateToggles();
                     // Step 2
                     } else if (progress > 0 && progress < 7) {
                         $('#step1').hide();
@@ -811,6 +818,7 @@
                         $('#step3').hide();
                         $('#result').show();
                         $('#reset-to-init').show();
+                        BF4.Result.deactivateToggles();
                     // Step 3
                     } else if (progress > 7) {
                         $('#step1').hide();
@@ -819,6 +827,7 @@
                         $('#result').show();
                         $('#solve').show();
                         $('#reset-to-init').show();
+                        BF4.Result.activateToggles();
                     }
                     
                     $progress.val(progress);
@@ -977,7 +986,6 @@
             
             /* Solve */
             function solve() {
-                deactivateToggles();
                 $successMessage.hide();
                 $errorMessage.hide();
                 BF4.Map.setCurrentAsLast();
@@ -1011,7 +1019,6 @@
                     trackFailed();
                 } else {
                     $successMessage.show();
-                    activateToggles();
                     trackSolved();
                 }
                 
@@ -1098,7 +1105,9 @@
                 getNextEmptyLocationNumber: getNextEmptyLocationNumber,
                 getUniqueButtons: getUniqueButtons,
                 setValue: setValue,
-                getValue: getValue
+                getValue: getValue,
+                activateToggles: activateToggles,
+                deactivateToggles: deactivateToggles
             }
         })(document, window, jQuery);
         
