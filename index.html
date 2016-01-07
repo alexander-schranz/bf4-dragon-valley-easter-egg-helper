@@ -241,6 +241,34 @@
             text-align: center;
             color: red;
         }
+        
+        .left {
+            float: left;
+        }
+        
+        .right {
+            float: right;
+        }
+        
+        #donate {
+            border-top: 1px solid black;
+            text-align: center;
+            padding: 15px 20px;
+            overflow: hidden;
+            background: #ccc;
+        }
+        
+        .donate-button {
+            display: inline-block;
+            border-radius: 4px;
+            padding: 3px 5px;
+            background: #3b7bbf;
+            font-weight: bold;
+            border-bottom: 2px solid #1e477a;
+            color: white;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
    </style>
 </head>
 <body>
@@ -249,7 +277,7 @@
             <h1>
                 BF4 Dragon Valley Easter Egg Helper<br/>
                 <small>
-                    v4.0.2<br/>
+                    v4.0.3<br/>
                     by Lexo91
                 </small>
             </h1>
@@ -593,6 +621,16 @@
                     <button id="create-link" class="result-button">Create Share Link</button>
                     <input id="link-box" type="text" class="result-link" />
                 </p>
+            </div>
+        </section>
+        <section id="donate">
+            <div class="left">
+                created by Lexo91
+            </div>            
+            <div class="right">
+                <a class="donate-button" target="_blank" href="https://paypal.me/l91/0.5">
+                    Donate
+                </a>
             </div>
         </section>
     </div>
