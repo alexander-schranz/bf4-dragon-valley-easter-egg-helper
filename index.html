@@ -2,14 +2,13 @@
 <html>
 <head>
    <title>BF4: Dragon Valley Easter Egg Helper</title>
-   <!--
    <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
-   -->
    <style>
         /* Bacis */
         body {
             margin: 0;
             font-family: 'Droid Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
             background: url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/simple_dashed.png") black;
             color: #333;
             font-size: 13px;
@@ -277,10 +276,13 @@
             <h1>
                 BF4 Dragon Valley Easter Egg Helper<br/>
                 <small>
-                    v4.0.4<br/>
+                    v4.0.5<br/>
                     by Lexo91
                 </small>
             </h1>
+            <p>
+                <a href="http://battlelog.battlefield.com/bf4/forum/threadview/2979150494244429566/" target="_blank">Any Questions or Feedback?</a>
+            </p>
             <p>
                 Inspired by
                 <a href="https://www.youtube.com/watch?v=JuuzmOXL1bc" target="_blank"><strong>JackFraq</strong></a>
@@ -288,12 +290,14 @@
                 <a href="https://www.youtube.com/watch?v=e6PcPuJOZ18" target="_blank"><strong>Apollo_v7</strong></a>
                 <br/>
                 I created a little helper to get all <strong>20 lights</strong> burning.
-                <br/>
-                <br/>
+            </p>
+            <p>
                 A special thanks to <strong><a href="http://battlelog.battlefield.com/bf4/user/PsychoDuckUK/" target="_blank">PsychoDuckUK</a></strong> helping me fix a bug in this app.
-                <br/>
-                <br/>
-                <a href="http://battlelog.battlefield.com/bf4/forum/threadview/2979150494244429566/" target="_blank">Any Questions or Feedback?</a>
+            </p>
+            <p>
+                <a href="https://www.youtube.com/watch?v=vxvUOLJiPoo" target="_blank">
+                    <strong>Watch Tutorial &#x1f3a5;</strong>
+                </a>
             </p>
         </header>
         <section id="map">
@@ -949,7 +953,7 @@
                 var resultValue = 1;
                 $valueInputs.each(function() {
                     var value = parseInt($(this).attr('id').replace('value', ''), 10);
-                    if (value && !$(this).val()) {
+                    if (value && !$(this).val() && resultValue === 1) {
                         resultValue = value;
                     }
                 });
